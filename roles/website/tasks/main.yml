@@ -1,0 +1,27 @@
+---
+# tasks file for roles/website
+- import_tasks: install_nginx.yml
+  notify: 
+    - start nginx
+
+#- meta: flush_handlers
+
+#- name: restart service
+ # service:
+  #  name: nginx
+  # state: restarted
+  #become: yes
+
+- meta: flush_handlers
+
+- import_tasks: copy_conf.yml
+  notify: 
+    - restart nginx
+ 
+- import_tasks: copy_webs.yml
+  notify: 
+    - restart nginx
+
+- import_tasks: copy_html.yml
+  notify: 
+    - restart nginx

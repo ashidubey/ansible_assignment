@@ -1,0 +1,6 @@
+---
+- name: copy html pages
+  copy:
+    src: files/motora-html
+    dest: /var/www/
+  become: yes
